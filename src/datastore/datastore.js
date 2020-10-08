@@ -25,16 +25,17 @@ class Table extends Component{
                     id:key
                 })                
             }
+            console.log(store)
         this.setState({stores:store,getone:true})
       }).catch((error) => {
         console.log(error)
       })
     }
 
-    del = (e) => {
-      e.preventDefault();
-      axios.delete(`https://book-store-29dca.firebaseio.com/stor.json/${this.state.id}`).then((response) => {
-        console.log(response.data)
+    del = (id) => {
+      console.log('https://book-store-29dca.firebaseio.com/stor/' + id)
+      axios.delete('/stor/' + id).then((response) => {
+      console.log(response.data)
     }).catch((error)=> {
       console.log(error)
     })
@@ -53,7 +54,7 @@ class Table extends Component{
                 <td>{li.name}</td>
                 <td>{li.author}</td>
                 <td>{li.date}</td>
-                <td><button type="button" onClick={this.del}>&times;</button></td>
+                <td><button type="button" onClick={() => this.del(li.id)}>&times;</button></td>
               </tr>
             )
         })
