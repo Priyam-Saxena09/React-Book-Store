@@ -33,7 +33,6 @@ class Table extends Component{
     }
 
     del = (id) => {
-      console.log('https://book-store-29dca.firebaseio.com/stor/' + id)
       axios.delete('/stor/' + id).then((response) => {
       console.log(response.data)
     }).catch((error)=> {
